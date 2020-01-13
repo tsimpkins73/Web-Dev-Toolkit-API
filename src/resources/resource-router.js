@@ -14,9 +14,9 @@ resource_router.get('/api/resources', (req, res) => {
     });
 });
 
-resource_router.get('/api/categories', (req, res) => {
+resource_router.get('/api/types', (req, res) => {
   const knexInstance = req.app.get('db') 
-  ResourcesService.getAllCategories(knexInstance)
+  ResourcesService.getAllTypes(knexInstance)
     .then(results => {
       res.send(results);
     });
@@ -61,13 +61,13 @@ resource_router.delete('/api/comments/:id', jsonParser, (req, res) => {
     
 });
 
-resource_router.get('/api/Resources/category/:categoryId', jsonParser, (req, res) => {
+resource_router.get('/api/resources/byType/:typeId', jsonParser, (req, res) => {
   const {
-    categoryId
+    typeId
   } = req.params;
   const knexInstance = req.app.get('db') 
   
-  ResourcesService.getResourcesByCategoryId(knexInstance, categoryId)
+  ResourcesService.getResourcesByTypeId(knexInstance, categoryId)
     .then(results => {
       res.send(results);
     });

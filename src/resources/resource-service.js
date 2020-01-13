@@ -1,22 +1,22 @@
 
 
 const ArticlesService = {
-    getAllArticles(knex) {
-        return knex.select('*').from('articles')
+    getAllResources(knex) {
+        return knex.select('*').from('resources')
     },
-    getAllCategories(knex) {
-        return knex.select('*').from('categories')
+    getAllTypes(knex) {
+        return knex.select('*').from('types')
     },
 
     getFavorites(knex) {
         return knex.from('articles').select('*').where('favorite', true)
     },
 
-   getArticlesByCategoryId(knex, categoryId) {
+   getResourcesByTypeId(knex, categoryId) {
     console.log(categoryId)     
-    return knex.from('articles')
-         .join('article_categories','article_id', 'articles.id')
-         .where('category_id', categoryId)
+    return knex.from('resources')
+         .join('resource_types','resource_id', 'resources.id')
+         .where('type_id', typeId)
          .select('*')
      },
 
