@@ -1,80 +1,80 @@
 require('dotenv').config()
 const express = require('express');
-const article_router = express();
+const resource_router = express();
 const jsonParser = express.json();
-const ArticlesService = require('./article-service.js');
+const ResourcesService = require('./resource-service.js.js');
 const jsonBodyParser = express.json();
 const cors = require('cors');
 
-article_router.get('/api/articles', (req, res) => {
+resource_router.get('/api/resources', (req, res) => {
   const knexInstance = req.app.get('db') 
-  ArticlesService.getAllArticles(knexInstance)
+  ResourcesService.getAllResources(knexInstance)
     .then(results => {
       res.send(results);
     });
 });
 
-article_router.get('/api/categories', (req, res) => {
+resource_router.get('/api/categories', (req, res) => {
   const knexInstance = req.app.get('db') 
-  ArticlesService.getAllCategories(knexInstance)
+  ResourcesService.getAllCategories(knexInstance)
     .then(results => {
       res.send(results);
     });
 });
 
-article_router.get('/api/articles/:id', jsonParser, (req, res) => {
+resource_router.get('/api/Resources/:id', jsonParser, (req, res) => {
   const {
     id
   } = req.params;
   const knexInstance = req.app.get('db')
  
-  ArticlesService.getById(knexInstance, id)
+  ResourcesService.getById(knexInstance, id)
     .then(results => {
       res.send(results);
     });
     
 });
 
-article_router.get('/api/comments/:id', jsonParser, (req, res) => {
+resource_router.get('/api/comments/:id', jsonParser, (req, res) => {
   const {
     id
   } = req.params;
   const knexInstance = req.app.get('db')
  
-  ArticlesService.getArticleComments(knexInstance, id)
+  ResourcesService.getresourceComments(knexInstance, id)
     .then(results => {
       res.send(results);
     });
     
 });
 
-article_router.delete('/api/comments/:id', jsonParser, (req, res) => {
+resource_router.delete('/api/comments/:id', jsonParser, (req, res) => {
   const {
     id
   } = req.params;
   const knexInstance = req.app.get('db')
  
-  ArticlesService.deleteComment(knexInstance, id)
+  ResourcesService.deleteComment(knexInstance, id)
     .then(results => {
       res.sendStatus(200);
     });
     
 });
 
-article_router.get('/api/articles/category/:categoryId', jsonParser, (req, res) => {
+resource_router.get('/api/Resources/category/:categoryId', jsonParser, (req, res) => {
   const {
     categoryId
   } = req.params;
   const knexInstance = req.app.get('db') 
   
-  ArticlesService.getArticlesByCategoryId(knexInstance, categoryId)
+  ResourcesService.getResourcesByCategoryId(knexInstance, categoryId)
     .then(results => {
       res.send(results);
     });
 });
 
 
-article_router.post('/api/articles', jsonBodyParser, (req, res, next) => {
+resource_router.post('/api/Resources', jsonBodyParser, (req, res, next) => {
   const {
     headline,
     url,
@@ -83,7 +83,7 @@ article_router.post('/api/articles', jsonBodyParser, (req, res, next) => {
     image,
     favorite,
   user_id } = req.body;
-const newArticle = {
+const newresource = {
   headline,
   url,
   summary,
@@ -92,7 +92,7 @@ const newArticle = {
   favorite };
 
 const knexInstance = req.app.get('db')
-for (const [key, value] of Object.entries(newArticle))
+for (const [key, value] of Object.entries(newresource))
       if (value == null)
         return res.status(400).json({
           error: `Missing '${key}' in request body`
@@ -100,28 +100,28 @@ for (const [key, value] of Object.entries(newArticle))
 
 
 
-newArticle.user_id = {user_id}
+newresource.user_id = {user_id}
 
-ArticlesService.insertArticle(knexInstance, newArticle)
-      .then(article => {
+ResourcesService.insertresource(knexInstance, newresource)
+      .then(resource => {
         res
           .status(201)
-          .json(ArticlesService.serializeArticle(article))
+          .json(ResourcesService.serializeresource(resource))
       })
       .catch(next)
 });
 
 
-article_router.delete('/articles/:id', (req, res) => {
+resource_router.delete('/Resources/:id', (req, res) => {
   const {
     id
   } = req.params;
   const knexInstance = req.app.get('db')
 
-  ArticlesService.deleteArticle(knexInstance, id)
+  ResourcesService.deleteresource(knexInstance, id)
   .then(results => {
     res.send(results);
   });
 });
 
-module.exports = article_router
+module.exports = resource_router
