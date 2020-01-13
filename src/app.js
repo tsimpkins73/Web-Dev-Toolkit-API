@@ -3,8 +3,7 @@ const morgan = require('morgan')
 const cors = require('cors')
 const helmet = require('helmet')
 const { NODE_ENV, CLIENT_ORIGIN } = require('./config')
-const articlesRouter = require('./articles/article-router')
-const commentsRouter = require('./comments/comments-router')
+const resource_router = require('./resources/resource_router')
 const authRouter = require('./auth/auth-router')
 const usersRouter = require('./users/users-router')
 
@@ -25,7 +24,7 @@ app.use((req, res, next) => {
   next();
 });
 
-app.use(articlesRouter)
+app.use(resource_router)
 app.use(commentsRouter)
 app.use(authRouter)
 app.use(usersRouter)
