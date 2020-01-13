@@ -25,7 +25,6 @@ app.use((req, res, next) => {
 });
 
 app.use(resource_router)
-app.use(commentsRouter)
 app.use(authRouter)
 app.use(usersRouter)
 
