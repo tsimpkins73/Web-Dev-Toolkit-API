@@ -8,9 +8,6 @@ const ArticlesService = {
         return knex.select('*').from('types')
     },
 
-    getFavorites(knex) {
-        return knex.from('articles').select('*').where('favorite', true)
-    },
 
    getResourcesByTypeId(knex, categoryId) {
     console.log(categoryId)     
