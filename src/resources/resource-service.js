@@ -9,8 +9,8 @@ const ArticlesService = {
     },
 
 
-   getResourcesByTypeId(knex, categoryId) {
-    console.log(categoryId)     
+   getResourcesByTypeId(knex, typeId) {
+    console.log(typeId)     
     return knex.from('resources')
          .join('resource_types','resource_id', 'resources.id')
          .where('type_id', typeId)

@@ -67,7 +67,7 @@ resource_router.get('/api/resources/byType/:typeId', jsonParser, (req, res) => {
   } = req.params;
   const knexInstance = req.app.get('db') 
   
-  ResourcesService.getResourcesByTypeId(knexInstance, categoryId)
+  ResourcesService.getResourcesByTypeId(knexInstance, typeId)
     .then(results => {
       res.send(results);
     });
