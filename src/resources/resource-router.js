@@ -2,7 +2,7 @@ require('dotenv').config()
 const express = require('express');
 const resource_router = express();
 const jsonParser = express.json();
-const ResourcesService = require('./resource-service.js.js');
+const ResourcesService = require('./resource-service');
 const jsonBodyParser = express.json();
 const cors = require('cors');
 

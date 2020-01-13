@@ -3,7 +3,7 @@ const morgan = require('morgan')
 const cors = require('cors')
 const helmet = require('helmet')
 const { NODE_ENV, CLIENT_ORIGIN } = require('./config')
-const resource_router = require('./resources/resource_router')
+const resource_router = require('./resources/resource-router')
 const authRouter = require('./auth/auth-router')
 const usersRouter = require('./users/users-router')
 
