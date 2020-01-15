@@ -6,7 +6,7 @@ const { NODE_ENV, CLIENT_ORIGIN } = require('./config')
 const resource_router = require('./resources/resource-router')
 const authRouter = require('./auth/auth-router')
 const usersRouter = require('./users/users-router')
-
+require('dotenv').config()
 const app = express()
 
 app.use(morgan((NODE_ENV === 'production') ? 'tiny' : 'common', {
