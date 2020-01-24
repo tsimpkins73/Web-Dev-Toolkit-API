@@ -28,14 +28,15 @@ app.use(
   });
 }); */
 
-/* app.startServer = function (port) {
+app.startServer = function (port) {
   return new Promise((resolve, reject) => {
     this.listen(port, function () {
       this.stopServer = require('util').promisify(this.close);
       resolve(this);
     }).on('error', reject);
   });
-}; */
+};
+
 const PORT = process.env.PORT || 8000
 
 

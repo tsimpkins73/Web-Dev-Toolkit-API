@@ -1,26 +1,64 @@
-# Express Boilerplate!
+# Web Dev Toolkit API Documentation
 
-This is a boilerplate project used for starting new projects!
+### GET Get All Resources
+https://web-dev-toolkit-api.herokuapp.com/api/resources
+https://web-dev-toolkit-api.herokuapp.com/api/resources
 
-## Set up
+Example Request
+Get All Resources
+curl --location --request GET 'https://web-dev-toolkit-api.herokuapp.com/api/resources'
 
-Complete the following steps to start a new project (NEW-PROJECT-NAME):
 
-1. Clone this repository to your local machine `git clone BOILERPLATE-URL NEW-PROJECTS-NAME`
-2. `cd` into the cloned repository
-3. Make a fresh start of the git history for this project with `rm -rf .git && git init`
-4. Install the node dependencies `npm install`
-5. Move the example Environment file to `.env` that will be ignored by git and read by the express server `mv example.env .env`
-6. Edit the contents of the `package.json` to use NEW-PROJECT-NAME instead of `"name": "express-boilerplate",`
+### GET Get Resources by Type ID
+https://web-dev-toolkit-api.herokuapp.com/api/resources/byType/1
+https://web-dev-toolkit-api.herokuapp.com/api/resources/byType/1
 
-## Scripts
+Example Request
+Get Resources by Type ID
+curl --location --request GET 'https://web-dev-toolkit-api.herokuapp.com/api/resources/byType/1'
 
-Start the application `npm start`
 
-Start nodemon for the application `npm run dev`
+### GET Get All Types
+https://web-dev-toolkit-api.herokuapp.com/api/types
 
-Run the tests `npm test`
+Example Request
+Get All Types
+curl --location --request GET 'https://web-dev-toolkit-api.herokuapp.com/api/types'
 
-## Deploying
 
-When your new project is ready for deployment, add a new Heroku application with `heroku create`. This will make a new git remote called "heroku" and you can then `npm run deploy` which will push to this remote's master branch.
+### POST Login
+https://web-dev-toolkit-api.herokuapp.com/api/auth/login
+https://web-dev-toolkit-api.herokuapp.com/api/auth/login
+
+HEADERS
+Content-Typeapplication/json
+BODY raw
+username: webdev@webdevtoolkit.com,
+password: Password35!
+
+Example Request
+Login
+curl --location --request POST 'https://web-dev-toolkit-api.herokuapp.com/api/auth/login' \
+--header 'Content-Type: application/json' \
+--data-raw 'username: webdev@webdevtoolkit.com,
+password: Password35!'
+
+
+### POST Submit User
+https://web-dev-toolkit-api.herokuapp.com/api/users
+https://web-dev-toolkit-api.herokuapp.com/api/users
+
+HEADERS
+Content-Typeapplication/json
+BODY raw
+username: webdev2@webdevtoolkit.com,
+password: Password35!,
+name: Web Dev 2
+
+Example Request
+Submit User
+curl --location --request POST 'https://web-dev-toolkit-api.herokuapp.com/api/users' \
+--header 'Content-Type: application/json' \
+--data-raw 'username: webdev2@webdevtoolkit.com,
+password: Password35!,
+name: Web Dev 2'

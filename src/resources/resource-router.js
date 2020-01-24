@@ -22,7 +22,7 @@ resource_router.get('/api/types', (req, res) => {
     });
 });
 
-resource_router.get('/api/Resources/:id', jsonParser, (req, res) => {
+resource_router.get('/api/resources/:id', jsonParser, (req, res) => {
   const {
     id
   } = req.params;
@@ -35,31 +35,6 @@ resource_router.get('/api/Resources/:id', jsonParser, (req, res) => {
     
 });
 
-resource_router.get('/api/comments/:id', jsonParser, (req, res) => {
-  const {
-    id
-  } = req.params;
-  const knexInstance = req.app.get('db')
- 
-  ResourcesService.getresourceComments(knexInstance, id)
-    .then(results => {
-      res.send(results);
-    });
-    
-});
-
-resource_router.delete('/api/comments/:id', jsonParser, (req, res) => {
-  const {
-    id
-  } = req.params;
-  const knexInstance = req.app.get('db')
- 
-  ResourcesService.deleteComment(knexInstance, id)
-    .then(results => {
-      res.sendStatus(200);
-    });
-    
-});
 
 resource_router.get('/api/resources/byType/:typeId', jsonParser, (req, res) => {
   const {

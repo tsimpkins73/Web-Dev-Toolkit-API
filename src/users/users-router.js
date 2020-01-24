@@ -16,7 +16,6 @@ usersRouter
 
 .get('/api/users/:username', (req, res, next) => {
   const { username } = req.params
-  console.log(username)
   UsersService.getUserWithUsername(req.app.get('db'), username)
   .catch(next)
   .then(results => {
@@ -25,7 +24,7 @@ usersRouter
 })
 
 .post('/api/users', jsonBodyParser, (req, res, next) => {
-    const { password, username, name, } = req.body
+    const { password, username, name } = req.body
 
     for (const field of ['name', 'username', 'password'])
       if (!req.body[field])
